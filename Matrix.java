@@ -20,7 +20,7 @@ public class Matrix
             matrix = new double[rows][columns];
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    matrix[i][j] = sc.nextFloat();
+                    matrix[i][j] = sc.nextDouble();
                 }
             }
         sc.close();
@@ -54,17 +54,19 @@ public class Matrix
         return result;
     }
 
-    @Override
-    public String toString()
+    public Matrix add(Matrix right)
     {
-        String str = new String("\n");
+        assert rows == right.rows && columns == right.columns
+            : "Matrices are not the same dimensions for matrix addition";
+
+        Matrix result = new Matrix(rows, columns);
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                str = str.concat(String.valueOf("\t" + matrix[i][j]));
+                result.matrix[i][j] = matrix[i][j] + right.matrix[i][j];
             }
-            str = str.concat("\n");
         }
-        return str;
+        return result;
     }
 
     public Matrix sigmoid()
@@ -79,6 +81,20 @@ public class Matrix
         return result;
     }
 
+    @Override
+    public String toString()
+    {
+        String str = new String("\n");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                str = str.concat(String.valueOf("\t" + matrix[i][j]));
+            }
+            str = str.concat("\n");
+        }
+        return str;
+    }
+
+
     public static void main(String[] args)
     {
             Matrix matrix1 = new Matrix("./matrix1.csv");
@@ -88,5 +104,11 @@ public class Matrix
             System.out.println(product);
 
             System.out.println(matrix1.sigmoid());
+
+            Matrix matrix3 = new Matrix("./matrix3.csv");
+
+            System.out.println(matrix1);
+
+            System.out.println(matrix1.add(matrix3));
     }
 }
