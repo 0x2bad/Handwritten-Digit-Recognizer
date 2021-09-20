@@ -1,5 +1,6 @@
 import java.io.*;  
 import java.util.Scanner;  
+
 public class Matrix 
 {  
     public int rows;
@@ -37,12 +38,15 @@ public class Matrix
 
     public Matrix dot(Matrix right)
     {
-        Matrix result = new Matrix(this.rows, right.columns);
+        assert columns == right.rows
+            : "left columns do not equal right rows for matrix multiplication";
 
-        for (int i = 0; i < this.rows; i++) {
+        Matrix result = new Matrix(rows, right.columns);
+
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < right.columns; j++) {
-                for (int k = 0; k < this.columns; k++) {
-                    result.matrix[i][j] += this.matrix[i][k] * right.matrix[k][j];
+                for (int k = 0; k < columns; k++) {
+                    result.matrix[i][j] += matrix[i][k] * right.matrix[k][j];
                 }
             }
         }
