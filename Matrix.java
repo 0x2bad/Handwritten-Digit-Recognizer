@@ -1,11 +1,12 @@
 import java.io.*;  
 import java.util.Scanner;  
+import java.lang.Math;
 
 public class Matrix 
 {  
     public int rows;
     public int columns;
-    public float matrix[][];
+    public double matrix[][];
 
     public Matrix(String filename)
     {  
@@ -16,7 +17,7 @@ public class Matrix
             rows = sc.nextInt();
             columns = sc.nextInt();
 
-            matrix = new float[rows][columns];
+            matrix = new double[rows][columns];
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
                     matrix[i][j] = sc.nextFloat();
@@ -33,7 +34,7 @@ public class Matrix
     {
         this.rows = rows;
         this.columns = columns;
-        matrix = new float[rows][columns];
+        matrix = new double[rows][columns];
     }
 
     public Matrix dot(Matrix right)
@@ -66,6 +67,18 @@ public class Matrix
         return str;
     }
 
+    public Matrix sigmoid()
+    {
+        Matrix result = new Matrix(rows, columns);
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                result.matrix[i][j] = 1.0 / (1.0 + Math.exp(-matrix[i][j]));
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args)
     {
             Matrix matrix1 = new Matrix("./matrix1.csv");
@@ -73,5 +86,7 @@ public class Matrix
 
             Matrix product = matrix1.dot(matrix2);
             System.out.println(product);
+
+            System.out.println(matrix1.sigmoid());
     }
 }
