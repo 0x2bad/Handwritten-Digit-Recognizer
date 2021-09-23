@@ -18,9 +18,7 @@ public class DrawListener implements MouseListener, MouseMotionListener
     @Override
     public void mousePressed(MouseEvent e)
     {
-        canvas.g2D.fillOval(e.getX(), e.getY(), 8, 8);
         prevPt = e.getPoint();
-        canvas.repaint();
     }
 
     @Override
@@ -30,11 +28,7 @@ public class DrawListener implements MouseListener, MouseMotionListener
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
-    public void mouseReleased(MouseEvent e)
-    {
-        canvas.g2D.fillOval(e.getX(), e.getY(), 8, 8);
-        canvas.repaint();
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
     public void mouseDragged(MouseEvent e)

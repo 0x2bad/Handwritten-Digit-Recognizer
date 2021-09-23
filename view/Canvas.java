@@ -8,12 +8,12 @@ import controller.DrawListener;
  
 public class Canvas extends JPanel
 {
-    private BufferedImage bi = new BufferedImage(28*16, 28*16, BufferedImage.TYPE_BYTE_BINARY);
+    public BufferedImage bi = new BufferedImage(28*16, 28*16, BufferedImage.TYPE_BYTE_BINARY);
     public Graphics2D g2D = bi.createGraphics();
 
     public Canvas()
     {
-        g2D.setStroke(new BasicStroke(8.0f));
+        g2D.setStroke(new BasicStroke(20.0f));
 
         DrawListener drawListener = new DrawListener(this);
         addMouseListener(drawListener);

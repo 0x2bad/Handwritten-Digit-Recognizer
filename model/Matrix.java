@@ -31,12 +31,18 @@ public class Matrix
         }
     }
 
-    // zero matrix
     public Matrix(int rows, int columns)
     {
         this.rows = rows;
         this.columns = columns;
         matrix = new double[rows][columns];
+    }
+
+    public Matrix(double matrix[][], int rows, int columns)
+    {
+        this.rows = rows;
+        this.columns = columns;
+        this.matrix = matrix;
     }
 
     public Matrix dot(Matrix right)
