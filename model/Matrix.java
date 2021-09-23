@@ -1,3 +1,5 @@
+package model;
+
 import java.io.*;  
 import java.util.Scanner;  
 import java.lang.Math;
@@ -9,7 +11,7 @@ public class Matrix
     public double matrix[][];
 
     public Matrix(String filename)
-    {  
+    {
         try {
             Scanner sc = new Scanner(new File(filename));  
             sc.useDelimiter(",|\\n");

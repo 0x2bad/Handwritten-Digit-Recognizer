@@ -1,3 +1,5 @@
+package model;
+
 final class Network
 {
     // First layer
