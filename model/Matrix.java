@@ -81,6 +81,28 @@ public class Matrix
         return result;
     }
 
+    // returns the index of the row with largest value
+    public int maxRow()
+    {
+        double maxValue = -1.0;
+        int rowIndexOfMax = -1;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (matrix[i][j] > maxValue) {
+                    maxValue = matrix[i][j];
+                    rowIndexOfMax = i;
+                }
+            }
+        }
+        return rowIndexOfMax;
+    }
+
+    public void printSize()
+    {
+        System.out.println("(" + rows + "x" + columns + ")");
+    }
+
     @Override
     public String toString()
     {
@@ -93,7 +115,6 @@ public class Matrix
         }
         return str;
     }
-
 
     public static void main(String[] args)
     {
@@ -109,6 +130,6 @@ public class Matrix
 
             System.out.println(matrix1);
 
-            System.out.println(matrix1.add(matrix3));
+            System.out.println(matrix1.add(matrix3).maxRow());
     }
 }
