@@ -27,7 +27,7 @@ public class RecognizeListener implements ActionListener
             }
         }
 
-        int p = (int)pixelValue;
+//        int p = (int)pixelValue;
 //        System.out.print(" " + p + " " + p + " " + p);
         return (pixelValue / 256.0);
     }

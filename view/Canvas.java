@@ -13,7 +13,7 @@ public class Canvas extends JPanel
 
     public Canvas()
     {
-        g2D.setStroke(new BasicStroke(20.0f));
+        g2D.setStroke(new BasicStroke(30.0f));
 
         DrawListener drawListener = new DrawListener(this);
         addMouseListener(drawListener);
