@@ -34,15 +34,15 @@ public class DrawListener implements MouseListener, MouseMotionListener
     @Override
     public void mouseReleased(MouseEvent e) {
         // kludge
-        new GrayMap(canvas.bi, canvas.g2D);
+     //   new GrayMap(canvas.bi, canvas.g2D);
 
-        canvas.repaint();
+ //       canvas.repaint();
 
     //    System.out.println("The number is " + Network.feedforward(graymap));
     //    canvas.g2D.setColor(Color.BLACK);
     //    canvas.g2D.fillRect(0, 0, 448, 448);
    //     canvas.repaint();
-        canvas.g2D.setColor(Color.WHITE);
+//        canvas.g2D.setColor(Color.WHITE);
     }
 
     @Override
