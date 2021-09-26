@@ -1,6 +1,10 @@
 package controller;
 
 import java.awt.event.*;
+
+import model.GrayMap;
+import model.Network;
+
 import java.awt.*;
 
 import view.Canvas;
@@ -28,7 +32,18 @@ public class DrawListener implements MouseListener, MouseMotionListener
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        // kludge
+        new GrayMap(canvas.bi, canvas.g2D);
+
+        canvas.repaint();
+
+    //    System.out.println("The number is " + Network.feedforward(graymap));
+    //    canvas.g2D.setColor(Color.BLACK);
+    //    canvas.g2D.fillRect(0, 0, 448, 448);
+   //     canvas.repaint();
+        canvas.g2D.setColor(Color.WHITE);
+    }
 
     @Override
     public void mouseDragged(MouseEvent e)

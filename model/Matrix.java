@@ -4,16 +4,24 @@ import java.io.*;
 import java.util.Scanner;  
 import java.lang.Math;
 
+
 public class Matrix 
 {  
+    public interface EachElement
+    {
+        double callback(double element);
+    }
     public int rows;
     public int columns;
     public double matrix[][];
 
+    public Matrix() {}
+
     public Matrix(String filename)
     {
         try {
-            Scanner sc = new Scanner(new File(filename));  
+            InputStream in = getClass().getResourceAsStream(filename);
+            Scanner sc = new Scanner(in);  
             sc.useDelimiter(",|\\n");
 
             rows = sc.nextInt();
@@ -27,9 +35,12 @@ public class Matrix
             }
         sc.close();
         } catch(Exception e) {
-            System.err.println(e);
+            System.out.println(e);
+            System.out.println("exiting from exception");
+            System.exit(1);
         }
     }
+
 
     public Matrix(int rows, int columns)
     {
@@ -45,10 +56,35 @@ public class Matrix
         this.matrix = matrix;
     }
 
+    public Matrix(Scanner sc, int rows, int columns)
+    {
+        this.rows = rows;
+        this.columns = columns;
+
+        matrix = new double[rows][columns];
+        for (int i = 0; i < 784; i++) {
+            int got = sc.nextInt();
+            matrix[i][0] = got;
+            matrix[i][0] /= 255.0;
+        }
+    }
+
+    public Matrix map(EachElement apply)
+    {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = apply.callback(matrix[i][j]);
+            }
+        }
+        return this;
+    }
+
     public Matrix dot(Matrix right)
     {
         assert columns == right.rows
-            : "left columns do not equal right rows for matrix multiplication";
+            : "left columns do not equal right rows for matrix multiplication" + 
+              " (" + rows + "x" + columns + "), " + 
+              " (" + right.rows + "x" + right.columns + ")";
 
         Matrix result = new Matrix(rows, right.columns);
 
@@ -65,7 +101,9 @@ public class Matrix
     public Matrix add(Matrix right)
     {
         assert rows == right.rows && columns == right.columns
-            : "Matrices are not the same dimensions for matrix addition";
+            : "Matrices are not the same dimensions for matrix addition" +
+              " (" + rows + "x" + columns + "), " + 
+              " (" + right.rows + "x" + right.columns + ")";
 
         Matrix result = new Matrix(rows, columns);
 

@@ -11,21 +11,22 @@ import controller.RecognizeListener;
 
 public class MainWindow extends JFrame
 {
+    public Canvas canvas = new Canvas();
+    public JButton recognizeButton = new JButton("feedforward");
     public MainWindow()
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocation(200, 100);
         setVisible(true);
-        setSize(28*16, 28*16);
+        setSize(28*16, 28*16+50);
 
-        Canvas canvas = new Canvas();
         add(BorderLayout.CENTER, canvas);
 
         // South panel
         JPanel buttonPanel = new JPanel();
-        JButton recognizeButton = new JButton("Recognize");
         buttonPanel.add(recognizeButton);
         add(BorderLayout.SOUTH, buttonPanel);
-        recognizeButton.addActionListener(new RecognizeListener(canvas.bi));
+        recognizeButton.addActionListener(new RecognizeListener(this));
     }
 
     public static void main(String[] args)
